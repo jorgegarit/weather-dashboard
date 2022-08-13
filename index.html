@@ -32,7 +32,10 @@
                 <div class="input-group">
                     <input id="cityInput" type="text" class="form-control text-center" placeholder="Orlando"/>
                     <div class="input-group-append">
-                        <button type="button" id="cityBtn" class="btn btn-outline-primary bg-warning"><i class="fas fa-solid fa-search"></i></button>
+                        <button type="button" onclick="generateForecast(document.getElementById('cityInput').value.trim())"
+                            id="cityBtn" class="btn btn-outline-primary bg-warning">
+                            <i class="fas fa-solid fa-search"></i>
+                        </button>
                     </div>
                 </div>
         </div>
@@ -70,7 +73,10 @@
     </main>
 
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
     <script src="./assets/js/script.js"></script>
 
