@@ -25,15 +25,40 @@ function generateForecast(query) {
             var readableHumity = res.main.humidity;
             var readableWindSpeed = res.wind.speed;
 
-            // call for UV index 
-            
-
             // input into card for todays forecast
             todaysWeatherEl.innerHTML = "<h3 class='cityName'>" + res.name + ", " + todaysDate + "</h3>"
-                + "<p class=cityContent> Temperature: " + readableTemp + "°F" + "<br> Humidity: " 
-                + readableHumity + "%" + "<br> Wind Speed: " + readableWindSpeed + "mph" + 
-                "</p>";
+                + "<p class='cityContent'> Temperature: " + readableTemp + "°F" + "<br> Humidity: " 
+                + readableHumity + "%" + "<br> Wind Speed: " + readableWindSpeed + "mph" + "</p>";
 
+            // response for latitude and longitude to use for UV index call
+
+            var longitude = res.coord.lon;
+            var latitude = res.coord.lat;
+
+            // call for UV index 
+            $.ajax({
+                url: "https://api.openweathermap.org/data/2.5/uvi?appid=" + apiKey + 
+                    "&lat=" + latitude + "&lon=" + longitude,
+                success: function(res) {
+                    var readableUvIndex = res.value;
+
+                    // else if statements to create attributed so that UV index will change color based on level
+                    if (readableUvIndex > 0 && readableUvIndex <= 2){
+                        var lowText = "<p class='cityContent'> UV Index: <span class='low'>" + readableUvIndex + "</span></p>";
+                        todaysWeatherEl.innerHTML = todaysWeatherEl.innerHTML + lowText;
+                    }
+                    else if (readableUvIndex > 2 && readableUvIndex <= 7){
+                        var moderateText = "<p class='cityContent'> UV Index: <span class='moderate'>" + readableUvIndex + "</span></p>";
+                        todaysWeatherEl.innerHTML = todaysWeatherEl.innerHTML + moderateText;
+                    }
+                    else if (readableUvIndex >= 8) {
+                        var highText = "<p class='cityContent'> UV Index: <span class='high'>" + readableUvIndex + "</span></p>";
+                        todaysWeatherEl.innerHTML = todaysWeatherEl.innerHTML + highText
+                    }
+                
+                     
+                }
+            })
         }
         
     });

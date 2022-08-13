@@ -34,3 +34,16 @@ h1 {
 .cityName {
     color: blue;
 }
+
+.high {
+    background-color: red;
+}
+
+.moderate {
+    background-color: yellow;
+}
+
+.low {
+    background-color: green;
+}
+
