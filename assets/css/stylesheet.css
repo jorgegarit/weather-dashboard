@@ -5,15 +5,27 @@
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
+    margin: 15px;
 }
 
 header {
     color: blue; 
+    height: 50px;
 }
 
 h1 {
     font-size: 50px;
+    font-weight: bold;
+  
+}
+
+#searchContainer {
+    margin-left: 15px;
+    margin-top:0;
+    background-color: blue;
+}
+#searchTitle {
+    padding-top: 10px;
+    font-size: 30px;
     font-weight: bold;
 }

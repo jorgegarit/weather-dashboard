@@ -25,17 +25,19 @@
 
     <!-- Main display section -->
     <main class="row">
-        <div class="flex-row justify-space-between col-12">
-            <!-- Input section -->
-            <div class="col-12 col-md-4">
-                <div class="card">
-                    <h2 class="card-header">Search City</h2>
-                    <form id="citySearch" class="card-body">
-                        <input name="nameOfCity" id="nameOfCity" type="text" class="cityInput" placeholder="Orlando"/>
-                        <button type="submit" class="cityBtn">Search For Weather</button>
-                    </form>
+       
+        <!-- Input section -->
+        <div class="col-3 text-center" id="searchContainer">
+            <h2 id="searchTitle" class="text-warning">Search City</h2>
+                <div class="input-group">
+                    <input id="cityInput" type="text" class="form-control text-center" placeholder="Orlando"/>
+                    <div class="input-group-append">
+                        <button type="button" id="cityBtn" class="btn btn-outline-primary bg-warning"><i class="fas fa-solid fa-search"></i></button>
+                    </div>
                 </div>
-            </div>
+        </div>
+
+        <!-- Previous searches section -->
 
             <!-- Todays weather display -->
             <div class="col-12 col-md-8">
@@ -44,7 +46,6 @@
                     <div class="card-body" id="todaysWeatherDisplay"></div>
                 </div>
             </div>
-        </div>
     </main>
 
 
