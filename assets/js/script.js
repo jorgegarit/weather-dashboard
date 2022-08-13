@@ -5,6 +5,8 @@ var inputFieldEl = document.getElementById("cityInput");
 var todaysWeatherEl = document.getElementById("todaysWeather");
 var inputCitiesEl = document.getElementById("searchList");
 
+// Format today date usign moment js
+var todaysDate = moment().format("MMM Do YYYY");
 
 var inputCities = [];
 
@@ -18,8 +20,19 @@ function generateForecast(query) {
     $.ajax({
         url: "https://api.openweathermap.org/data/2.5/weather?q=" + query + "&APPID=" + apiKey,
         success: function(res) {
-            todaysWeatherEl.innerHTML = "<h3 class='cityName'>" + res.name + "</h3>"
-            // todaysWeatherEl.innerHTML =  + res.name + '</h3>';
+            // variables so that response from call is in readable values
+            var readableTemp = Math.floor(res.main.temp* 9/5 - 459);
+            var readableHumity = res.main.humidity;
+            var readableWindSpeed = res.wind.speed;
+
+            // call for UV index 
+            
+
+            // input into card for todays forecast
+            todaysWeatherEl.innerHTML = "<h3 class='cityName'>" + res.name + ", " + todaysDate + "</h3>"
+                + "<p class=cityContent> Temperature: " + readableTemp + "°F" + "<br> Humidity: " 
+                + readableHumity + "%" + "<br> Wind Speed: " + readableWindSpeed + "mph" + 
+                "</p>";
 
         }
         
