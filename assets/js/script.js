@@ -4,10 +4,12 @@ const apiKey = "746e01aa22c61fa5a613107f004407af";
 var inputFieldEl = document.getElementById("cityInput");
 var todaysWeatherEl = document.getElementById("todaysWeather");
 var inputCitiesEl = document.getElementById("searchList");
+var fiveDayForecastEl = document.getElementById("fiveDayDisplay");
 
 // Format today date usign moment js
 var todaysDate = moment().format("MMM Do YYYY");
 
+// array for searched cities
 var inputCities = [];
 
 
@@ -31,7 +33,6 @@ function generateForecast(query) {
                 + readableHumity + "%" + "<br> Wind Speed: " + readableWindSpeed + "mph" + "</p>";
 
             // response for latitude and longitude to use for UV index call
-
             var longitude = res.coord.lon;
             var latitude = res.coord.lat;
 
@@ -42,7 +43,7 @@ function generateForecast(query) {
                 success: function(res) {
                     var readableUvIndex = res.value;
 
-                    // else if statements to create attributed so that UV index will change color based on level
+                    // else if statements to create classes so that UV index will change color based on severity
                     if (readableUvIndex > 0 && readableUvIndex <= 2){
                         var lowText = "<p class='cityContent'> UV Index: <span class='low'>" + readableUvIndex + "</span></p>";
                         todaysWeatherEl.innerHTML = todaysWeatherEl.innerHTML + lowText;
@@ -59,8 +60,19 @@ function generateForecast(query) {
                      
                 }
             })
-        }
-        
+        }  
     });
+
+    // call for 5 day forecast
+    $.ajax({
+        url: "https://api.openweathermap.org/data/2.5/forecast?q=" + query + "&appid=" 
+            + apiKey,
+        success: function(res) {
+            fiveDayForecastEl.innerHTML = "";
+            var tomorrow = moment().add(1, 'days');
+            // for (var i = 0; res.list.length; i= 4)
+            fiveDayForecastEl.innerHTML = "<p>" + res.list.main.temp + "</p>";
+        }
+    })
     inputFieldEl.value = '';
 }

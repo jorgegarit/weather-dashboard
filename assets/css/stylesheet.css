@@ -33,17 +33,27 @@ h1 {
 
 .cityName {
     color: blue;
+    font-size: 30px;
+    font-weight: bold;
 }
 
+.cityContent {
+    color: blue;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+
 .high {
-    background-color: red;
+    color: red;
 }
 
 .moderate {
-    background-color: yellow;
+    color: yellow;
 }
 
 .low {
-    background-color: green;
+    color: green;
 }
+
 
